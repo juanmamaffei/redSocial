@@ -15,10 +15,19 @@ Node 10.4.1
 
 ## Bibliografía consultada
 
-### Rails Webpacker
+Rails Webpacker
 *https://github.com/rails/webpacker*
 
+Recursos para aprender React en español
+*https://github.com/jlobos/react-espanol*
+
+Material-UI
+*https://material-ui.com/getting-started/installation/*
+
+Formsy
+**
 ## Testeo de la aplicación
 
 rails server
-webpack-watcher
+
+./bin/webpack --watch --colors --progress

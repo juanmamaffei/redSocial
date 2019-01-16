@@ -2,11 +2,17 @@
   "name": "redsocial",
   "private": true,
   "dependencies": {
+    "@material-ui/core": "^3.8.1",
     "@rails/webpacker": "3.5",
     "babel-preset-react": "^6.24.1",
+    "create-react-class": "^15.6.3",
+    "formsy-material-ui": "^0.6.3",
+    "formsy-react": "^1.1.5",
+    "material-ui": "^0.20.2",
     "prop-types": "^15.6.2",
     "react": "^16.7.0",
-    "react-dom": "^16.7.0"
+    "react-dom": "^16.7.0",
+    "webpacker-react": "^0.3.2"
   },
   "devDependencies": {
     "webpack-dev-server": "2.11.2"
