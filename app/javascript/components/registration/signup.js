@@ -10,6 +10,7 @@ import Card from '@material-ui/core/Card';
 import { Base } from './base';
 import reqwest from 'reqwest';
 
+
 const styles = {
     card: {
         margin: '20px',
@@ -25,8 +26,7 @@ const styles = {
         width: '80%',
     }
 }
-export class Login extends Base {
-
+export class SignUp extends Base {
 
     constructor(props){
         super(props);
@@ -36,34 +36,47 @@ export class Login extends Base {
     submit(e){
         e.preventDefault();
         // validaciones!!!
-        // console.log(this.state);
-        reqwest({
-            url: '/users/sign_in.json',
-            method: 'POST',
-            data: {
-                user:{
-                    email: this.state.email,
-                    password: this.state.password,
+        if(this.state.password == this.state.passwordConfirmation){
+            reqwest({
+                url: '/users.json',
+                method: 'POST',
+                data: {
+                    user:{
+                        email: this.state.email,
+                        password: this.state.password,
+                        passwordConfirmation: this.state.passwordConfirmation,
+                        
+                    }
+                },
+                headers: {
+                    'X-CSRF-TOKEN': window.tkS2331458344q,
                 }
-            },
-            headers: {
-                'X-CSRF-TOKEN': window.tkS2331458344q,
-            }
-        }).then(data=>{console.log(data);this.reload();}).catch(err => this.handleError(err));
+            }).then(data=>{console.log(data);this.reload();}).catch(err => this.handleError(err));
+        }
+        else{
+            this.setState({errors: "Las contraseñas no coinciden."})
+        }
     }
     handleError(err){
-        const errorMess = JSON.parse(err.response).error;
-        this.setState({error: errorMess})
+        const errorMess = JSON.parse(err.response).errors;
+
+        let errRes = [];
+
+        for(let key in errorMess){
+            errRes.push(<span>{errorMess[key]}<br></br></span>);
+        }
+
+        this.setState({errors: errRes});
     }
     render(){
         //Salida del componente
-        
+        // onSubmit={ } onValid={()=>this.enableSubmitBtn()} onInvalid={()=>this.disableSubmitBtn()}
         return (
             <Card style={styles.card}>
-                <form onSubmit={this.submit}>
+                <form onSubmit={this.submit}> 
                     <h1>Red social</h1>
-                    <h2>Iniciar sesión</h2>
-                    <h3>{ this.state.error }</h3>
+                    <h2>Crear cuenta</h2>
+                    <h3>{ this.state.errors }</h3>
                     <div>
                         <TextField label="Correo electrónico" style={styles.textBox} required type="email" name="email" onChange={ (e)=> this.syncField(e, "email") }></TextField>
                     </div>
@@ -71,12 +84,15 @@ export class Login extends Base {
                         <TextField label="Contraseña" style={styles.textBox} required type="password" name="password" onChange={ (e)=> this.syncField(e, "password") }></TextField>
                     </div>
                     <div>
+                        <TextField label="Confirmar contraseña" style={styles.textBox} required type="password" name="passwordConfirmation" onChange={ (e)=> this.syncField(e, "passwordConfirmation") }></TextField>
+                    </div>
+                    <div>
                         <Button disabled={!this.state.canSubmit} style={styles.button} type="submit">
-                            Ingresar
+                            Crear cuenta
                         </Button>
                     </div>
                     <div>
-                        <a href="#" onClick={this.props.toggle} className="btn">Crear cuenta</a>
+                         Ya tengo cuenta, <a href="#" onClick={this.props.toggle} className="btn">Iniciar Sesión</a>
                     </div>
                     <div>
                         <a href="#">Entrar con Google</a>
