@@ -3,15 +3,18 @@
   "private": true,
   "dependencies": {
     "@material-ui/core": "^3.8.1",
+    "@material-ui/icons": "^3.0.2",
     "@rails/webpacker": "3.5",
     "babel-preset-react": "^6.24.1",
     "create-react-class": "^15.6.3",
     "formsy-material-ui": "^0.6.3",
     "formsy-react": "^1.1.5",
+    "markdown": "^0.5.0",
     "material-ui": "^0.20.2",
     "prop-types": "^15.6.2",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
+    "react-render-html": "^0.6.0",
     "reqwest": "^2.0.5",
     "typeface-roboto": "0.0.54",
     "webpacker-react": "^0.3.2"

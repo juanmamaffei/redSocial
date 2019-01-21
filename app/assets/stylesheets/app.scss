@@ -1,0 +1,66 @@
+
+
+.full-page-height-vh{
+    height: 100vh;
+}
+
+body{
+    font-family: Roboto;
+}
+
+.botonera{
+    text-align: right;
+    flex-grow: 1; // hace que se vaya pa la derecha 
+    
+}
+
+.botonera a{
+    color: white;
+    text-decoration: none;
+}
+.botonera a:hover{
+    background-color: rgba(255,255,255,0.4);
+    padding: 20px 5px 20px 10px;
+}
+
+.mar{
+    margin: 10px;
+}
+
+.cuadroPublica{
+    height: 5em;
+    width: 100%;
+    text-align: center;
+    margin: 10px;
+    padding: 10px;
+}
+
+.btnPublicar {
+    text-align: center;
+    width: 100%;
+    background-color: rgba(0,0,0,0.4)
+}
+
+::-webkit-input-placeholder {
+    text-align: center;
+    font-size: 2em;
+    padding: 18px;
+ }
+ 
+ :-moz-placeholder { /* Firefox 18- */
+    text-align: center; 
+    font-size: 2em;
+    padding: 18px; 
+ }
+ 
+ ::-moz-placeholder {  /* Firefox 19+ */
+    text-align: center; 
+    font-size: 2em;
+    padding: 18px; 
+ }
+ 
+ :-ms-input-placeholder {  
+    text-align: center; 
+    font-size: 2em;
+    padding: 18px;
+ }
