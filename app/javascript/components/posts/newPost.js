@@ -7,6 +7,8 @@ import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import reqwest from 'reqwest';
 import { markdown } from 'markdown';
+import Fab from '@material-ui/core/Fab';
+import InsertPhoto from '@material-ui/icons/InsertPhoto';
 
 export class NewPost extends React.Component{
 
@@ -16,9 +18,13 @@ export class NewPost extends React.Component{
             html_content: '',
             markdown_content: '',
             error: '',
+            images: [],
             
         };
         this.nuevoPost = this.nuevoPost.bind(this);
+        this.elegirArchivo = this.elegirArchivo.bind(this);
+        this.elegir = React.createRef();
+        this.registrarArchivo = this.registrarArchivo.bind(this);
     }
 
     nuevoPost(e){
@@ -39,6 +45,23 @@ export class NewPost extends React.Component{
         this.setState({markdown_content: " "})
     }
 
+    elegirArchivo(){
+        this.elegir.current.click();
+    }
+
+    registrarArchivo(e){
+        let files = e.targ.files;
+
+        for (let i = 0; i < files.length; i++) {
+            let file = files[i];
+
+            this.setState({
+                images: this.state.images.concat([file]),
+            })
+            
+        }
+    }
+
     syncField(evento, campo){
         let element = evento.target;
         let value = element.value;
@@ -56,6 +79,7 @@ export class NewPost extends React.Component{
 
             <Card className="mar">
                 <form onSubmit={this.nuevoPost}>
+                    <input multiple type="file" ref={this.elegir} className="ocultar" onChange={this.registrarArchivo} />
                     <CardContent>
                         <TextField onChange={ (e)=> this.syncField(e, 'markdown_content') }
                             placeholder="Escribí lo que querés compartir..."
@@ -65,8 +89,12 @@ export class NewPost extends React.Component{
                             value = {this.state.markdown_content}
                         />
                     </CardContent>
-                    <CardActions>
-                        <Button className="btnPublicar" type="submit">Publicar</Button>
+                    <CardActions className="centrarBotones">
+                        <Fab variant="extended" color="primary" type="submit">Publicar</Fab>
+                        <Fab variant="extended" color="secondary" className="mar" onClick={this.elegirArchivo}>
+                            <InsertPhoto />
+                            Foto
+                        </Fab>
                     </CardActions>
                 </form>
             </Card>

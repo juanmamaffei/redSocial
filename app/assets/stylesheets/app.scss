@@ -41,6 +41,15 @@ body{
     background-color: rgba(0,0,0,0.4)
 }
 
+.centrarBotones{
+    display: flex;
+    justify-content: center;
+}
+
+.ocultar{
+    display: none;
+}
+
 ::-webkit-input-placeholder {
     text-align: center;
     font-size: 2em;
